@@ -1,0 +1,47 @@
+.footer {
+  background: linear-gradient(270deg, #ffffff, #ffe5e5, #ffffff);
+  background-size: 600% 600%;
+  animation: fadeUp 1s ease-in-out, gradientShift 12s ease infinite;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;   /* Remove side padding so background covers full width */
+  width: 100%;       /* Full width footer */
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.footer-container {
+  max-width: 1200px;  /* Keep content centered */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #444;
+  font-size: 16px;
+  padding: 0 20px;    /* Add internal spacing for content */
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heart {
+  color: red;
+  display: inline-block;
+  animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
