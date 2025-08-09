@@ -1,35 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import Logo from "../assets/logo.png.png"; // Update your logo path
 import "./Header.css";
-import Logo from "../assets/logo.png.png"; // Rename your logo as logo.png and place in src/assets
 
-const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
+export default function Header() {
   return (
     <header className="header">
-      {/* Logo */}
-      <div className="logo-container">
-        <img src={Logo} alt="AverElite Logo" className="logo-img" />
-      </div>
+      <div className="header-container">
+        {/* Logo */}
+        <div className="logo-section">
+          <img src={Logo} alt="Logo" className="logo" />
+          <span className="brand-name">AverElite</span>
+        </div>
 
-      {/* Navigation Links */}
-      <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <a href="/inventory">Inventory</a>
-        <a href="/sales">Sales</a>
-        <a href="/reports">Reports</a>
-      </nav>
-
-      {/* Hamburger Menu */}
-      <div
-        className={`hamburger ${menuOpen ? "toggle" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+        {/* Navigation */}
+        <nav className="nav-links">
+          <a href="/inventory">Inventory</a>
+          <a href="/sales">Sales</a>
+          <a href="/reports">Report</a>
+        </nav>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

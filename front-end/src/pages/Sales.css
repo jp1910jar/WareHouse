@@ -1,0 +1,99 @@
+.sales-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8faff, #e8f0ff);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sales-header h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 15px;
+}
+
+/* Form Styles */
+.sales-form {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.sales-form form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.sales-form input,
+.sales-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.sales-form input:focus,
+.sales-form select:focus {
+  border-color: #4cafef;
+  box-shadow: 0 0 6px rgba(76, 175, 239, 0.3);
+  outline: none;
+}
+
+.sales-form button {
+  background: linear-gradient(90deg, #4cafef, #1e88e5);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.sales-form button:hover {
+  background: linear-gradient(90deg, #1e88e5, #1565c0);
+  transform: scale(1.03);
+}
+
+/* Table Styles */
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sales-table thead {
+  background: #1e3a8a;
+  color: white;
+}
+
+.sales-table th,
+.sales-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sales-table tr:hover {
+  background: #f1f5ff;
+}
+
+@media (max-width: 768px) {
+  .sales-form form {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

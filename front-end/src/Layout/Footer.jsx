@@ -1,21 +1,14 @@
 import React from "react";
 import "./Footer.css";
 
-const Footer = () => {
-  const currentDate = new Date().toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+export default function Footer() {
+  const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
-      <div className="footer-left">
-        Made with <span className="heart">❤️</span> by AverElite
-      </div>
-      <div className="footer-right">{currentDate}</div>
+      <p>
+        Made with <span className="heart">❤️</span> from Averelite &nbsp;|&nbsp; © {year}
+      </p>
     </footer>
   );
-};
-
-export default Footer;
+}
