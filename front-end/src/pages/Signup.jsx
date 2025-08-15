@@ -18,7 +18,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/signup", form);
+      const res = await axios.post("http://localhost:5000/api/auth/signup", form);
       alert(res.data.message || "Signup successful!");
     } catch (error) {
       alert("Signup failed!");

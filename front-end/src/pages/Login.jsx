@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Login.css"; // ✅ Make sure the file name is correct
-import Logo from "../assets/logo.png.png"; // ✅ Check path
+import { useNavigate } from "react-router-dom"; 
+import "./Login.css";
+import Logo from "../assets/logo.png.png";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -9,10 +10,21 @@ export default function Login() {
     password: "",
   });
 
+  const navigate = useNavigate(); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/auth/login", form);
-    alert("Logged in successfully!");
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", form);
+
+      alert("Logged in successfully!");
+      
+      localStorage.setItem("token", res.data.token);
+
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.error || "Login failed");
+    }
   };
 
   return (
