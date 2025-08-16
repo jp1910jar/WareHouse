@@ -18,7 +18,7 @@ export default function Header() {
           <Link to="/inventory">Inventory</Link>
           <Link to="/sales">Sales</Link>
           <Link to="/report">Report</Link>
-          <Link to="/crm">CRM</Link>
+          
         </nav>
       </div>
     </header>

@@ -15,7 +15,7 @@ import Addsales from "./pages/Addsales";
 import Report from "./pages/Report";
 import Sales from "./pages/Sales";
 import Adminlogin from "./pages/Adminlogin";
-import CRM from "./pages/CRM";
+
 function App() {
   return (
     <Router>
@@ -34,7 +34,7 @@ function App() {
              <Route path="/report" element={<Report />} />
              <Route path="/sales" element={<Sales />} /> 
              <Route path="/adminlogin" element={<Adminlogin />} />
-             <Route path="/crm" element={<CRM/>} />
+             
         </Route>
       </Routes>
     </Router>

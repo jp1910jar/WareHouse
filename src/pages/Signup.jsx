@@ -57,7 +57,10 @@ export default function Signup() {
             onChange={handleChange}
             required
           />
-
+          <select name="role" value={form.role} onChange={handleChange}>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
           <button type="submit">Sign Up</button>
         </form>
 
