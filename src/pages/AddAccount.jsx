@@ -13,22 +13,59 @@ const AddAccount = () => {
     phone: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [popup, setPopup] = useState({ show: false, message: "", type: "" });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Account Data Submitted:", formData);
-    alert("Account added successfully!");
+    setLoading(true);
+    setPopup({ show: false, message: "", type: "" });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/crm/createCrm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setPopup({ show: true, message: "✅ Account added successfully!", type: "success" });
+        setFormData({
+          name: "",
+          company: "",
+          email: "",
+          address: "",
+          city: "",
+          pincode: "",
+          state: "",
+          phone: "",
+        });
+      } else {
+        setPopup({ show: true, message: `❌ Error: ${result.message || "Something went wrong"}`, type: "error" });
+      }
+    } catch (error) {
+      setPopup({ show: true, message: "❌ Failed to connect to server.", type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const closePopup = () => {
+    setPopup({ show: false, message: "", type: "" });
   };
 
   return (
     <div className="account-container">
       <h2 className="form-title">Add Account</h2>
+
       <form className="account-form" onSubmit={handleSubmit}>
-        
         <div className="form-group">
           <label>Name</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -73,8 +110,52 @@ const AddAccount = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-btn">Add Account</button>
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? "Saving..." : "Add Account"}
+        </button>
       </form>
+
+      {/* Popup Modal */}
+      {popup.show && (
+        <div className="popup-overlay">
+          <div className={`popup-box ${popup.type}`}>
+            <p>{popup.message}</p>
+            <button onClick={closePopup} className="popup-btn">Close</button>
+          </div>
+        </div>
+      )}
+
+      {/* Extra CSS for popup only */}
+      <style>{`
+        .popup-overlay {
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: rgba(0,0,0,0.4);
+          z-index: 1000;
+        }
+        .popup-box {
+          background: white;
+          padding: 20px 30px;
+          border-radius: 10px;
+          text-align: center;
+          box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+        .popup-box.success { border: 2px solid green; color: green; }
+        .popup-box.error { border: 2px solid red; color: red; }
+        .popup-btn {
+          margin-top: 15px;
+          background: #007bff;
+          color: white;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   );
 };
