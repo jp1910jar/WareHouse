@@ -1,0 +1,107 @@
+/* Header */
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 0 40px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  gap: 40px; /* ✅ Space between logo and links */
+}
+
+.header-container img {
+  height: 60px; 
+  width: auto; 
+  object-fit: contain; 
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 60px;
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a,
+.dropdown-title {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-links a::after,
+.dropdown-title::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background-color: #7b1113;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.dropdown-title:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.dropdown-title:hover {
+  color: #7b1113;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1001;
+  border-radius: 6px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: #7b1113;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

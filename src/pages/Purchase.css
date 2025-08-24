@@ -1,0 +1,193 @@
+/* Layout */
+.purchase-page {
+  padding: 22px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+background: linear-gradient(to right, #f9fafc, #f1f5ff);
+}
+
+.purchase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color:#000
+  
+}
+
+.purchase-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #000;
+
+
+}
+
+/* Add button (matches Sales style) */
+.add-btn {
+  background: linear-gradient(135deg, #5a67f2, #3b82f6);
+  color:white;
+  border: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
+  transition: transform .15s ease, filter .15s ease;
+}
+.add-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.add-btn:active { transform: translateY(0); }
+
+/* Card around table (same look as Sales) */
+.table-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+/* Scroll container for small screens */
+.table-scroller {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table */
+.purchase-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px; /* keeps columns readable; scroller handles small screens */
+}
+
+.purchase-table thead th {
+  background: linear-gradient(90deg, #5b6ef7 0%, #6b57c9 50%, #5b6ef7 100%);
+  color: #fff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.purchase-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eef2f7;
+  color: #1f2937;
+  background: #fff;
+}
+
+.purchase-table tbody tr:hover td {
+  background: #f8fbff;
+}
+
+.no-rows {
+  text-align: center;
+  padding: 22px 0;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* Action buttons (pills like in screenshot) */
+.actions {
+  white-space: nowrap;
+}
+.pill-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  margin-right: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+}
+.pill-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.pill-btn.edit { background: #f59e0b; color: #000; }
+.pill-btn.delete { background: #ef4444; color: #fff; }
+
+/* Totals card (exact same style block) */
+.totals-card {
+  margin-top: 16px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  display: inline-block;
+}
+
+/* Popup (matches Sales modal look) */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.popup-card {
+  width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 44px rgba(0,0,0,.22);
+  padding: 18px;
+  text-align: left;
+  animation: pop .18s ease-out;
+}
+
+.popup-card h2 {
+  margin: 4px 4px 12px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.popup-card input {
+  width: 90%;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.popup-card input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.18);
+}
+
+.popup-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-btn, .cancel-btn {
+  border: 0;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.save-btn { background: #60a5fa; color: #fff; }
+.save-btn:hover { filter: brightness(1.05); }
+.cancel-btn { background: #ef4444; color: #fff; }
+.cancel-btn:hover { filter: brightness(1.05); }
+
+@keyframes pop {
+  from { transform: translateY(8px) scale(.98); opacity: 0; }
+  to   { transform: translateY(0)   scale(1);   opacity: 1; }
+}
+
+/* Responsiveness */
+@media (max-width: 720px) {
+  .purchase-header h1 { font-size: 22px; }
+  .add-btn { padding: 9px 14px; border-radius: 10px; }
+  .popup-card { width: 92vw; }
+}

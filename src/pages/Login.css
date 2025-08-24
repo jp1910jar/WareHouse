@@ -1,0 +1,156 @@
+/* === Page Background with Animated Blobs (like signup) === */
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Animated floating blobs */
+.login-page::before,
+.login-page::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.login-page::before {
+  top: -120px;
+  left: -100px;
+  background: #ff9a9e;
+}
+
+.login-page::after {
+  bottom: -120px;
+  right: -120px;
+  background: #2575fc;
+}
+
+/* Blob floating animation */
+@keyframes float {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* === Card (unchanged) === */
+.login-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 40px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  z-index: 1;
+  color: #333;
+  transition: 0.3s;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.logo-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login-card input:focus {
+  border-color: #4cafef;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(76, 175, 239, 0.4);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #4cafef, #1e88e5);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #1e88e5, #1565c0);
+  transform: scale(1.02);
+}
+
+/* Footer */
+.login-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-footer a {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px 20px;
+    width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    width: 50px;
+    height: 50px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+}
