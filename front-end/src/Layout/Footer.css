@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  background-color: white;  /* Matches header */
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Heart Color */
+.footer .heart {
+  color: #7b1113; /* Maroon */
+  margin: 0 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 10px 20px;
+  }
+}
