@@ -6,6 +6,18 @@ const Leads = () => {
   const [editLead, setEditLead] = useState(null); // store lead for update
   const [updateData, setUpdateData] = useState({}); // partial updates
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
+ const statusOptions = [
+    "Attempted to Contact",
+    "Contact in Future",
+    "Contacted",
+    "Junk Lead",
+    "Lost Lead",
+    "Converted",
+    "Not Contacted",
+    "Pre-Qualified",
+    "Not Qualified",
+  ];
+
 
   // Fetch leads
   const fetchLeads = async () => {

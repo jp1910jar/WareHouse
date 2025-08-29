@@ -16,13 +16,37 @@ const AddAccount = () => {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
 
+  // List of Indian States
+  const states = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+"Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+"Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+"Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+"Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+"Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Restrict phone to max 10 digits
+    if (name === "phone") {
+      if (!/^\d*$/.test(value)) return; // only numbers
+      if (value.length > 10) return;   // max 10 digits
+    }
+
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate phone (must be 10 digits)
+    if (!/^\d{10}$/.test(formData.phone)) {
+      setPopup({ show: true, message: "❌ Phone number must be exactly 10 digits.", type: "error" });
+      return;
+    }
+
     setLoading(true);
     setPopup({ show: false, message: "", type: "" });
 
@@ -36,7 +60,7 @@ const AddAccount = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setPopup({ show: true, message: "✅ Account added successfully!", type: "success" });
+        setPopup({ show: true, message: "✅ Lead added successfully!", type: "success" });
         setFormData({
           name: "",
           company: "",
@@ -63,55 +87,60 @@ const AddAccount = () => {
 
   return (
     <div className="account-container">
-      <h2 className="form-title">Add Account</h2>
+      <h2 className="form-title">➕ Add Account</h2>
 
       <form className="account-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Name</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        
+          <input type="text" name="name"   placeholder="Name"  value={formData.name} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label>Company</label>
-          <input type="text" name="company" value={formData.company} onChange={handleChange} required />
+        
+          <input type="text" name="company"  placeholder="Company"  value={formData.company} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          
+          <input type="email" name="email" placeholder="E-mail"  value={formData.email} onChange={handleChange} required />
         </div>
 
         <div className="form-group full-width">
-          <label>Address</label>
-          <textarea name="address" value={formData.address} onChange={handleChange} required />
+          
+          <textarea name="address"   placeholder="Address" value={formData.address} onChange={handleChange} required />
         </div>
 
         <div className="form-row">
           <div className="form-group">
-            <label>City</label>
-            <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+            
+            <input type="text" name="city"   placeholder="city" value={formData.city} onChange={handleChange} required />
           </div>
 
           <div className="form-group">
-            <label>Pincode</label>
-            <input type="text" name="pincode" value={formData.pincode} onChange={handleChange} required />
+            
+            <input type="text" name="pincode"  placeholder="pincode" value={formData.pincode} onChange={handleChange} required />
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group">
-            <label>State</label>
-            <input type="text" name="state" value={formData.state} onChange={handleChange} required />
+            
+            <select name="state" value={formData.state} onChange={handleChange} required>
+              <option value="">-- Select State --</option>
+              {states.map((st, idx) => (
+                <option key={idx} value={st}>{st}</option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">
-            <label>Phone Number</label>
-            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+            
+            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="10-digit number" />
           </div>
         </div>
 
         <button type="submit" className="submit-btn" disabled={loading}>
-          {loading ? "Saving..." : "Add Account"}
+          {loading ? "Saving..." : "Add Lead"}
         </button>
       </form>
 
@@ -124,38 +153,6 @@ const AddAccount = () => {
           </div>
         </div>
       )}
-
-      {/* Extra CSS for popup only */}
-      <style>{`
-        .popup-overlay {
-          position: fixed;
-          top: 0; left: 0;
-          width: 100%; height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: rgba(0,0,0,0.4);
-          z-index: 1000;
-        }
-        .popup-box {
-          background: white;
-          padding: 20px 30px;
-          border-radius: 10px;
-          text-align: center;
-          box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-        }
-        .popup-box.success { border: 2px solid green; color: green; }
-        .popup-box.error { border: 2px solid red; color: red; }
-        .popup-btn {
-          margin-top: 15px;
-          background: #007bff;
-          color: white;
-          border: none;
-          padding: 8px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-      `}</style>
     </div>
   );
 };

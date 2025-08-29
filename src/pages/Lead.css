@@ -115,3 +115,31 @@
     padding: 3px 8px;
   }
 }
+/* Status badge styles */
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+}
+
+/* Colors */
+.status-badge.converted {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-badge.junk-lead {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status-badge.not-contacted,
+.status-badge.in-progress {
+  background-color: #ffc107;
+  color: #333;
+}
+
